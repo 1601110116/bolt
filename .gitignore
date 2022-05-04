@@ -122,3 +122,5 @@ figs/
 _results/
 notes.txt
 
+# Mercurial
+.hg/
