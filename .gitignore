@@ -123,4 +123,8 @@ _results/
 notes.txt
 
 # Mercurial
-.hg/
+**/.hg/
+ 
+# Cmake
+**/cmake-build-debug/
+**/build-bolt/

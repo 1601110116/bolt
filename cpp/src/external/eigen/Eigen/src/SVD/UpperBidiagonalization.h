@@ -11,17 +11,19 @@
 #ifndef EIGEN_BIDIAGONALIZATION_H
 #define EIGEN_BIDIAGONALIZATION_H
 
+#include "./InternalHeaderCheck.h"
+
 namespace Eigen { 
 
 namespace internal {
 // UpperBidiagonalization will probably be replaced by a Bidiagonalization class, don't want to make it stable API.
 // At the same time, it's useful to keep for now as it's about the only thing that is testing the BandMatrix class.
 
-template<typename _MatrixType> class UpperBidiagonalization
+template<typename MatrixType_> class UpperBidiagonalization
 {
   public:
 
-    typedef _MatrixType MatrixType;
+    typedef MatrixType_ MatrixType;
     enum {
       RowsAtCompileTime = MatrixType::RowsAtCompileTime,
       ColsAtCompileTime = MatrixType::ColsAtCompileTime,
@@ -37,10 +39,10 @@ template<typename _MatrixType> class UpperBidiagonalization
     typedef Matrix<Scalar, ColsAtCompileTimeMinusOne, 1> SuperDiagVectorType;
     typedef HouseholderSequence<
               const MatrixType,
-              const typename internal::remove_all<typename Diagonal<const MatrixType,0>::ConjugateReturnType>::type
+              const internal::remove_all_t<typename Diagonal<const MatrixType,0>::ConjugateReturnType>
             > HouseholderUSequenceType;
     typedef HouseholderSequence<
-              const typename internal::remove_all<typename MatrixType::ConjugateReturnType>::type,
+              const internal::remove_all_t<typename MatrixType::ConjugateReturnType>,
               Diagonal<const MatrixType,1>,
               OnTheRight
             > HouseholderVSequenceType;
@@ -127,7 +129,7 @@ void upperbidiagonalization_inplace_unblocked(MatrixType& mat,
        .makeHouseholderInPlace(mat.coeffRef(k,k+1), upper_diagonal[k]);
     // apply householder transform to remaining part of mat on the left
     mat.bottomRightCorner(remainingRows-1, remainingCols)
-       .applyHouseholderOnTheRight(mat.row(k).tail(remainingCols-1).transpose(), mat.coeff(k,k+1), tempData);
+       .applyHouseholderOnTheRight(mat.row(k).tail(remainingCols-1).adjoint(), mat.coeff(k,k+1), tempData);
   }
 }
 
@@ -161,13 +163,13 @@ void upperbidiagonalization_blocked_helper(MatrixType& A,
   typedef typename MatrixType::Scalar Scalar;
   typedef typename MatrixType::RealScalar RealScalar;
   typedef typename NumTraits<RealScalar>::Literal Literal;
-  enum { StorageOrder = traits<MatrixType>::Flags & RowMajorBit };
-  typedef InnerStride<int(StorageOrder) == int(ColMajor) ? 1 : Dynamic> ColInnerStride;
-  typedef InnerStride<int(StorageOrder) == int(ColMajor) ? Dynamic : 1> RowInnerStride;
+  static constexpr int StorageOrder = (traits<MatrixType>::Flags & RowMajorBit) ? RowMajor : ColMajor;
+  typedef InnerStride<StorageOrder == ColMajor ? 1 : Dynamic> ColInnerStride;
+  typedef InnerStride<StorageOrder == ColMajor ? Dynamic : 1> RowInnerStride;
   typedef Ref<Matrix<Scalar, Dynamic, 1>, 0, ColInnerStride>    SubColumnType;
   typedef Ref<Matrix<Scalar, 1, Dynamic>, 0, RowInnerStride>    SubRowType;
   typedef Ref<Matrix<Scalar, Dynamic, Dynamic, StorageOrder > > SubMatType;
-  
+
   Index brows = A.rows();
   Index bcols = A.cols();
 
@@ -202,7 +204,7 @@ void upperbidiagonalization_blocked_helper(MatrixType& A,
       {
         SubColumnType y_k( Y.col(k).tail(remainingCols) );
         
-        // let's use the begining of column k of Y as a temporary vector
+        // let's use the beginning of column k of Y as a temporary vector
         SubColumnType tmp( Y.col(k).head(k) );
         y_k.noalias()  = A.block(k,k+1, remainingRows,remainingCols).adjoint() * v_k; // bottleneck
         tmp.noalias()  = V_k1.adjoint()  * v_k;
@@ -231,7 +233,7 @@ void upperbidiagonalization_blocked_helper(MatrixType& A,
       {
         SubColumnType x_k ( X.col(k).tail(remainingRows-1) );
         
-        // let's use the begining of column k of X as a temporary vectors
+        // let's use the beginning of column k of X as a temporary vectors
         // note that tmp0 and tmp1 overlaps
         SubColumnType tmp0 ( X.col(k).head(k) ),
                       tmp1 ( X.col(k).head(k+1) );
@@ -293,7 +295,7 @@ void upperbidiagonalization_inplace_blocked(MatrixType& A, BidiagType& bidiagona
   Index size = (std::min)(rows, cols);
 
   // X and Y are work space
-  enum { StorageOrder = traits<MatrixType>::Flags & RowMajorBit };
+  static constexpr int StorageOrder = (traits<MatrixType>::Flags & RowMajorBit) ? RowMajor : ColMajor;
   Matrix<Scalar,
          MatrixType::RowsAtCompileTime,
          Dynamic,
@@ -355,8 +357,8 @@ void upperbidiagonalization_inplace_blocked(MatrixType& A, BidiagType& bidiagona
   }
 }
 
-template<typename _MatrixType>
-UpperBidiagonalization<_MatrixType>& UpperBidiagonalization<_MatrixType>::computeUnblocked(const _MatrixType& matrix)
+template<typename MatrixType_>
+UpperBidiagonalization<MatrixType_>& UpperBidiagonalization<MatrixType_>::computeUnblocked(const MatrixType_& matrix)
 {
   Index rows = matrix.rows();
   Index cols = matrix.cols();
@@ -377,8 +379,8 @@ UpperBidiagonalization<_MatrixType>& UpperBidiagonalization<_MatrixType>::comput
   return *this;
 }
 
-template<typename _MatrixType>
-UpperBidiagonalization<_MatrixType>& UpperBidiagonalization<_MatrixType>::compute(const _MatrixType& matrix)
+template<typename MatrixType_>
+UpperBidiagonalization<MatrixType_>& UpperBidiagonalization<MatrixType_>::compute(const MatrixType_& matrix)
 {
   Index rows = matrix.rows();
   Index cols = matrix.cols();
