@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="bolt"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="clang"/>
+		<Option virtualFolders="CMake Files\;CMake Files\src\;CMake Files\src\external\;CMake Files\src\external\eigen\;CMake Files\src\external\eigen\cmake-build-all\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/ylang/PycharmProjects/bolt/cpp/cmake-build-all"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j16 -f &quot;/home/ylang/PycharmProjects/bolt/cpp/cmake-build-all/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j16 -f &quot;/home/ylang/PycharmProjects/bolt/cpp/cmake-build-all/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j16 -f &quot;/home/ylang/PycharmProjects/bolt/cpp/cmake-build-all/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j16 -f &quot;/home/ylang/PycharmProjects/bolt/cpp/cmake-build-all/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="bolt">
+				<Option output="/home/ylang/PycharmProjects/bolt/cpp/cmake-build-all/bolt" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/ylang/PycharmProjects/bolt/cpp/cmake-build-all"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add option="-DBLAZE"/>
+					<Add directory="/home/ylang/PycharmProjects/bolt/cpp"/>
+					<Add directory="/home/ylang/PycharmProjects/bolt/cpp/src/external/eigen"/>
+					<Add directory="/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9"/>
+					<Add directory="/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/backward"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/llvm-10/lib/clang/10.0.0/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j16 -f &quot;/home/ylang/PycharmProjects/bolt/cpp/cmake-build-all/Makefile&quot;  VERBOSE=1 bolt"/>
+					<CompileFile command="/usr/bin/make -j16 -f &quot;/home/ylang/PycharmProjects/bolt/cpp/cmake-build-all/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j16 -f &quot;/home/ylang/PycharmProjects/bolt/cpp/cmake-build-all/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j16 -f &quot;/home/ylang/PycharmProjects/bolt/cpp/cmake-build-all/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="bolt/fast">
+				<Option output="/home/ylang/PycharmProjects/bolt/cpp/cmake-build-all/bolt" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/ylang/PycharmProjects/bolt/cpp/cmake-build-all"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add option="-DBLAZE"/>
+					<Add directory="/home/ylang/PycharmProjects/bolt/cpp"/>
+					<Add directory="/home/ylang/PycharmProjects/bolt/cpp/src/external/eigen"/>
+					<Add directory="/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9"/>
+					<Add directory="/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/bin/../lib/gcc/x86_64-linux-gnu/9/../../../../include/c++/9/backward"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/llvm-10/lib/clang/10.0.0/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j16 -f &quot;/home/ylang/PycharmProjects/bolt/cpp/cmake-build-all/Makefile&quot;  VERBOSE=1 bolt/fast"/>
+					<CompileFile command="/usr/bin/make -j16 -f &quot;/home/ylang/PycharmProjects/bolt/cpp/cmake-build-all/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j16 -f &quot;/home/ylang/PycharmProjects/bolt/cpp/cmake-build-all/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j16 -f &quot;/home/ylang/PycharmProjects/bolt/cpp/cmake-build-all/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/ylang/PycharmProjects/bolt/cpp/cmake-build-all"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j16 -f &quot;/home/ylang/PycharmProjects/bolt/cpp/cmake-build-all/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j16 -f &quot;/home/ylang/PycharmProjects/bolt/cpp/cmake-build-all/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j16 -f &quot;/home/ylang/PycharmProjects/bolt/cpp/cmake-build-all/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j16 -f &quot;/home/ylang/PycharmProjects/bolt/cpp/cmake-build-all/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/ylang/PycharmProjects/bolt/cpp/cmake-build-all"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j16 -f &quot;/home/ylang/PycharmProjects/bolt/cpp/cmake-build-all/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j16 -f &quot;/home/ylang/PycharmProjects/bolt/cpp/cmake-build-all/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j16 -f &quot;/home/ylang/PycharmProjects/bolt/cpp/cmake-build-all/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j16 -f &quot;/home/ylang/PycharmProjects/bolt/cpp/cmake-build-all/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/ylang/PycharmProjects/bolt/cpp/src/include/public.hpp">
+			<Option target="bolt"/>
+		</Unit>
+		<Unit filename="/home/ylang/PycharmProjects/bolt/cpp/src/quantize/bolt.cpp">
+			<Option target="bolt"/>
+		</Unit>
+		<Unit filename="/home/ylang/PycharmProjects/bolt/cpp/src/quantize/bolt.hpp">
+			<Option target="bolt"/>
+		</Unit>
+		<Unit filename="/home/ylang/PycharmProjects/bolt/cpp/src/quantize/mithral.cpp">
+			<Option target="bolt"/>
+		</Unit>
+		<Unit filename="/home/ylang/PycharmProjects/bolt/cpp/src/quantize/mithral.hpp">
+			<Option target="bolt"/>
+		</Unit>
+		<Unit filename="/home/ylang/PycharmProjects/bolt/cpp/src/quantize/mithral_v1.hpp">
+			<Option target="bolt"/>
+		</Unit>
+		<Unit filename="/home/ylang/PycharmProjects/bolt/cpp/src/quantize/multi_codebook.hpp">
+			<Option target="bolt"/>
+		</Unit>
+		<Unit filename="/home/ylang/PycharmProjects/bolt/cpp/src/quantize/multisplit.hpp">
+			<Option target="bolt"/>
+		</Unit>
+		<Unit filename="/home/ylang/PycharmProjects/bolt/cpp/src/quantize/product_quantize.hpp">
+			<Option target="bolt"/>
+		</Unit>
+		<Unit filename="/home/ylang/PycharmProjects/bolt/cpp/src/utils/avx_utils.cpp">
+			<Option target="bolt"/>
+		</Unit>
+		<Unit filename="/home/ylang/PycharmProjects/bolt/cpp/src/utils/avx_utils.hpp">
+			<Option target="bolt"/>
+		</Unit>
+		<Unit filename="/home/ylang/PycharmProjects/bolt/cpp/src/utils/bit_ops.hpp">
+			<Option target="bolt"/>
+		</Unit>
+		<Unit filename="/home/ylang/PycharmProjects/bolt/cpp/src/utils/debug_utils.hpp">
+			<Option target="bolt"/>
+		</Unit>
+		<Unit filename="/home/ylang/PycharmProjects/bolt/cpp/src/utils/eigen_utils.hpp">
+			<Option target="bolt"/>
+		</Unit>
+		<Unit filename="/home/ylang/PycharmProjects/bolt/cpp/src/utils/memory.hpp">
+			<Option target="bolt"/>
+		</Unit>
+		<Unit filename="/home/ylang/PycharmProjects/bolt/cpp/src/utils/nn_utils.hpp">
+			<Option target="bolt"/>
+		</Unit>
+		<Unit filename="/home/ylang/PycharmProjects/bolt/cpp/src/utils/timing_utils.hpp">
+			<Option target="bolt"/>
+		</Unit>
+		<Unit filename="/home/ylang/PycharmProjects/bolt/cpp/test/external/catch.hpp">
+			<Option target="bolt"/>
+		</Unit>
+		<Unit filename="/home/ylang/PycharmProjects/bolt/cpp/test/main.cpp">
+			<Option target="bolt"/>
+		</Unit>
+		<Unit filename="/home/ylang/PycharmProjects/bolt/cpp/test/quantize">
+			<Option target="bolt"/>
+		</Unit>
+		<Unit filename="/home/ylang/PycharmProjects/bolt/cpp/test/quantize/amm_common.hpp">
+			<Option target="bolt"/>
+		</Unit>
+		<Unit filename="/home/ylang/PycharmProjects/bolt/cpp/test/quantize/profile_amm.cpp">
+			<Option target="bolt"/>
+		</Unit>
+		<Unit filename="/home/ylang/PycharmProjects/bolt/cpp/test/quantize/profile_amm.hpp">
+			<Option target="bolt"/>
+		</Unit>
+		<Unit filename="/home/ylang/PycharmProjects/bolt/cpp/test/quantize/profile_bolt.cpp">
+			<Option target="bolt"/>
+		</Unit>
+		<Unit filename="/home/ylang/PycharmProjects/bolt/cpp/test/quantize/profile_encode.cpp">
+			<Option target="bolt"/>
+		</Unit>
+		<Unit filename="/home/ylang/PycharmProjects/bolt/cpp/test/quantize/profile_lut_creation.cpp">
+			<Option target="bolt"/>
+		</Unit>
+		<Unit filename="/home/ylang/PycharmProjects/bolt/cpp/test/quantize/profile_multicodebook.cpp">
+			<Option target="bolt"/>
+		</Unit>
+		<Unit filename="/home/ylang/PycharmProjects/bolt/cpp/test/quantize/profile_pq.cpp">
+			<Option target="bolt"/>
+		</Unit>
+		<Unit filename="/home/ylang/PycharmProjects/bolt/cpp/test/quantize/profile_scan.cpp">
+			<Option target="bolt"/>
+		</Unit>
+		<Unit filename="/home/ylang/PycharmProjects/bolt/cpp/test/quantize/test_bolt.cpp">
+			<Option target="bolt"/>
+		</Unit>
+		<Unit filename="/home/ylang/PycharmProjects/bolt/cpp/test/quantize/test_bolt.hpp">
+			<Option target="bolt"/>
+		</Unit>
+		<Unit filename="/home/ylang/PycharmProjects/bolt/cpp/test/quantize/test_mithral.cpp">
+			<Option target="bolt"/>
+		</Unit>
+		<Unit filename="/home/ylang/PycharmProjects/bolt/cpp/test/quantize/test_multicodebook.cpp">
+			<Option target="bolt"/>
+		</Unit>
+		<Unit filename="/home/ylang/PycharmProjects/bolt/cpp/test/test_avx_utils.cpp">
+			<Option target="bolt"/>
+		</Unit>
+		<Unit filename="/home/ylang/PycharmProjects/bolt/cpp/test/testing_utils/testing_utils.hpp">
+			<Option target="bolt"/>
+		</Unit>
+		<Unit filename="/home/ylang/PycharmProjects/bolt/cpp/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/home/ylang/PycharmProjects/bolt/cpp/src/external/eigen/cmake-build-all/Eigen3Config.cmake">
+			<Option virtualFolder="CMake Files\src\external\eigen\cmake-build-all\"/>
+		</Unit>
+		<Unit filename="/home/ylang/PycharmProjects/bolt/cpp/src/external/eigen/cmake-build-all/Eigen3ConfigVersion.cmake">
+			<Option virtualFolder="CMake Files\src\external\eigen\cmake-build-all\"/>
+		</Unit>
+		<Unit filename="/home/ylang/PycharmProjects/bolt/cpp/src/external/eigen/cmake-build-all/Eigen3Targets.cmake">
+			<Option virtualFolder="CMake Files\src\external\eigen\cmake-build-all\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

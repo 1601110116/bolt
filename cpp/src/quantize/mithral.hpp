@@ -104,7 +104,8 @@ struct mithral_amm {
     using scale_t = typename traits::encoding_scales_type;
     using offset_t = typename traits::encoding_offsets_type;
     using output_t = typename traits::output_type;
-    static constexpr int scan_block_nrows = 32;
+//    static constexpr int scan_block_nrows = 32;
+    int scan_block_nrows = 32;
     static constexpr int lut_sz = 16;
 
     // NxD matrix @ DxM matrix
@@ -135,7 +136,7 @@ struct mithral_amm {
     }
 
     void lut(const float* Q) {
-        // printf("nnz_per_centroid=%d ", nnz_per_centroid);
+         printf("nnz_per_centroid=%d ", nnz_per_centroid);
         if (nnz_per_centroid > 0) {
             mithral_lut_sparse(Q, M, D, ncodebooks, centroids,
                 idxs, nnz_per_centroid, out_offset_sum, out_scale,

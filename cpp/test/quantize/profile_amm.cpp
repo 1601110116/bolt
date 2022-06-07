@@ -26,6 +26,44 @@ TEST_CASE("amm mithral", "[amm][matmul][mithral][profile]") {
      _profile_mithral(kUcrTaskShape2, ncodebooks, lutconsts);
 }
 
+TEST_CASE("amm mithral N2pow", "[amm][matmul][mithralN2pow][profile]") {
+    std::vector<int> ncodebooks {2, 4, 8, 16, 32, 64};
+//    std::vector<int> ncodebooks {8, 16, 32, 64};
+//    std::vector<float> lutconsts {-1, 1, 2, 4};
+    std::vector<float> lutconsts {-1};
+//    _profile_mithral(kCifar10TaskShape, ncodebooks, lutconsts);
+//    _profile_mithral(kCifar10N1TaskShape, ncodebooks, lutconsts);
+//    _profile_mithral(kCifar10N2TaskShape, ncodebooks, lutconsts);
+//    _profile_mithral(kCifar10N4TaskShape, ncodebooks, lutconsts);
+//    _profile_mithral(kCifar10N8TaskShape, ncodebooks, lutconsts);
+//    _profile_mithral(kCifar10N16TaskShape, ncodebooks, lutconsts);
+//    _profile_mithral(kCifar10N32TaskShape, ncodebooks, lutconsts);
+    _profile_mithral(kCifar10N64TaskShape, ncodebooks, lutconsts);
+//    _profile_mithral(kCifar10N128TaskShape, ncodebooks, lutconsts);
+//    _profile_mithral(kCifar10N256TaskShape, ncodebooks, lutconsts);
+//    _profile_mithral(kCifar10N512TaskShape, ncodebooks, lutconsts);
+//    _profile_mithral(kCifar10N1024TaskShape, ncodebooks, lutconsts);
+//    _profile_mithral(kCifar10N2048TaskShape, ncodebooks, lutconsts);
+//    _profile_mithral(kCifar10N4096TaskShape, ncodebooks, lutconsts);
+//    _profile_mithral(kCifar10N8192TaskShape, ncodebooks, lutconsts);
+
+//    _profile_mithral(kCifar100TaskShape, ncodebooks, lutconsts);
+//    _profile_mithral(kCifar100N1TaskShape, ncodebooks, lutconsts);
+//    _profile_mithral(kCifar100N2TaskShape, ncodebooks, lutconsts);
+//    _profile_mithral(kCifar100N4TaskShape, ncodebooks, lutconsts);
+//    _profile_mithral(kCifar100N8TaskShape, ncodebooks, lutconsts);
+//    _profile_mithral(kCifar100N16TaskShape, ncodebooks, lutconsts);
+//    _profile_mithral(kCifar100N32TaskShape, ncodebooks, lutconsts);
+    _profile_mithral(kCifar100N64TaskShape, ncodebooks, lutconsts);
+//    _profile_mithral(kCifar100N128TaskShape, ncodebooks, lutconsts);
+//    _profile_mithral(kCifar100N256TaskShape, ncodebooks, lutconsts);
+//    _profile_mithral(kCifar100N512TaskShape, ncodebooks, lutconsts);
+//    _profile_mithral(kCifar100N1024TaskShape, ncodebooks, lutconsts);
+//    _profile_mithral(kCifar100N2048TaskShape, ncodebooks, lutconsts);
+//    _profile_mithral(kCifar100N4096TaskShape, ncodebooks, lutconsts);
+//    _profile_mithral(kCifar100N8192TaskShape, ncodebooks, lutconsts);
+}
+
 TEST_CASE("amm bolt", "[amm][matmul][bolt][profile]") {
      std::vector<int> ncodebooks {2, 4, 8, 16, 32, 64};
      _profile_bolt_amm(kCaltechTaskShape0, ncodebooks);
@@ -42,13 +80,51 @@ TEST_CASE("amm linear approx matmul", "[amm][matmul][dense][linear][profile]") {
     // std::vector<int> dvals {2, 4, 6, 8, 12, 16, 24, 32, 48, 64};
     std::vector<int> dvals {2, 4, 8, 16, 32, 64, 128}; // TODO uncomment above
 
-    _profile_matmul_methods(dvals, kCaltechTaskShape0);
-    _profile_matmul_methods(dvals, kCaltechTaskShape1);
+//    _profile_matmul_methods(dvals, kCaltechTaskShape0);
+//    _profile_matmul_methods(dvals, kCaltechTaskShape1);
     _profile_matmul_methods(dvals, kCifar10TaskShape);
     _profile_matmul_methods(dvals, kCifar100TaskShape);
     _profile_matmul_methods(dvals, kUcrTaskShape0);
     _profile_matmul_methods(dvals, kUcrTaskShape1);
     _profile_matmul_methods(dvals, kUcrTaskShape2);
+}
+
+TEST_CASE("amm linear approx matmul N2pow", "[amm][matmul][dense][linear][profile][N2pow]") {
+    int N, D, M;
+    // std::vector<int> dvals {2, 4, 6, 8, 12, 16, 24, 32, 48, 64};
+    std::vector<int> dvals {2, 4, 8, 16, 32, 64, 128}; // TODO uncomment above
+
+    _profile_matmul_methods(dvals, kCifar10TaskShape);
+    _profile_matmul_methods(dvals, kCifar10N1TaskShape);
+    _profile_matmul_methods(dvals, kCifar10N2TaskShape);
+    _profile_matmul_methods(dvals, kCifar10N4TaskShape);
+    _profile_matmul_methods(dvals, kCifar10N8TaskShape);
+    _profile_matmul_methods(dvals, kCifar10N16TaskShape);
+    _profile_matmul_methods(dvals, kCifar10N32TaskShape);
+    _profile_matmul_methods(dvals, kCifar10N64TaskShape);
+    _profile_matmul_methods(dvals, kCifar10N128TaskShape);
+    _profile_matmul_methods(dvals, kCifar10N256TaskShape);
+    _profile_matmul_methods(dvals, kCifar10N512TaskShape);
+    _profile_matmul_methods(dvals, kCifar10N1024TaskShape);
+    _profile_matmul_methods(dvals, kCifar10N2048TaskShape);
+    _profile_matmul_methods(dvals, kCifar10N4096TaskShape);
+    _profile_matmul_methods(dvals, kCifar10N8192TaskShape);
+
+    _profile_matmul_methods(dvals, kCifar100TaskShape);
+    _profile_matmul_methods(dvals, kCifar100N1TaskShape);
+    _profile_matmul_methods(dvals, kCifar100N2TaskShape);
+    _profile_matmul_methods(dvals, kCifar100N4TaskShape);
+    _profile_matmul_methods(dvals, kCifar100N8TaskShape);
+    _profile_matmul_methods(dvals, kCifar100N16TaskShape);
+    _profile_matmul_methods(dvals, kCifar100N32TaskShape);
+    _profile_matmul_methods(dvals, kCifar100N64TaskShape);
+    _profile_matmul_methods(dvals, kCifar100N128TaskShape);
+    _profile_matmul_methods(dvals, kCifar100N256TaskShape);
+    _profile_matmul_methods(dvals, kCifar100N512TaskShape);
+    _profile_matmul_methods(dvals, kCifar100N1024TaskShape);
+    _profile_matmul_methods(dvals, kCifar100N2048TaskShape);
+    _profile_matmul_methods(dvals, kCifar100N4096TaskShape);
+    _profile_matmul_methods(dvals, kCifar100N8192TaskShape);
 }
 
 TEST_CASE("amm osnap", "[amm][matmul][osnap][linear][profile]") {

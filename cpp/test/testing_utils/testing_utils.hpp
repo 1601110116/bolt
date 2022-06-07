@@ -88,6 +88,7 @@ static inline void print_dist_stats(const std::string& name, int64_t N,
 #define REPEATED_PROFILE_DIST_COMPUTATION(                              \
     NREPS, NAME, NTRIALS, DISTS_PTR, NUM_DISTS, EXPR)                   \
     do {                                                                \
+        double __t_mean = 0;                                            \
         std::cout << NAME << "(" << NREPS << "x" << NTRIALS << "):";    \
         for (int __rep = 0; __rep < NREPS; __rep++) {                   \
             double __t_min = std::numeric_limits<double>::max();        \
@@ -100,9 +101,14 @@ static inline void print_dist_stats(const std::string& name, int64_t N,
                 prevent_optimizing_away_dists(DISTS_PTR, NUM_DISTS);    \
                 __t_min = __t < __t_min ? __t : __t_min;                \
             }                                                           \
+            __t_mean += __t_min;                                        \
             printf(", %7.4f, (%.4e/s)", __t_min,                        \
                 static_cast<double>(NUM_DISTS * 1e3 / __t_min));        \
         }                                                               \
+        __t_mean /= NREPS;                                              \
+        printf(",  AVG ");                                              \
+        printf("%7.4f, (%.4e/s)", __t_mean,                             \
+            static_cast<double>(NUM_DISTS * 1e3 / __t_mean));           \
         printf("\n");                                                   \
     } while (0);
 

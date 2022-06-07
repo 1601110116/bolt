@@ -1,0 +1,4 @@
+/snap/clion/190/bin/cmake/linux/bin/cmake -DCMAKE_MAKE_PROGRAM=/usr/bin/make -DCMAKE_C_COMPILER=/usr/bin/clang -DCMAKE_CXX_COMPILER=/usr/bin/clang++ -G "CodeBlocks - Unix Makefiles" -S /home/ylang/PycharmProjects/bolt/cpp -B /home/ylang/PycharmProjects/bolt/cpp/cmake-build-all
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/ylang/PycharmProjects/bolt/cpp/cmake-build-all

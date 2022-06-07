@@ -23,10 +23,36 @@ static constexpr MatmulTaskShape kCaltechTaskShape0 {
     (224 - 3 + 1) * (224 - 3 + 1), 3 * (3 * 3), 2, "Caltech3x3"}; // 49284, 27
 static constexpr MatmulTaskShape kCaltechTaskShape1 {
     (224 - 5 + 1) * (224 - 5 + 1), 3 * (5 * 5), 2, "Caltech5x5"}; // 48400, 75
-static constexpr MatmulTaskShape kCifar10TaskShape {10000, 512, 10, "Cifar10"};
-static constexpr MatmulTaskShape kCifar100TaskShape {
-    10000, 512, 100, "Cifar100"};
-    // 10000 * 10, 512, 100, "Cifar100"};
+static constexpr MatmulTaskShape kCifar10TaskShape       {10000, 512, 10, "Cifar10"};
+static constexpr MatmulTaskShape kCifar10N1TaskShape     {1,     512, 10, "Cifar10N1"};
+static constexpr MatmulTaskShape kCifar10N2TaskShape     {2,     512, 10, "Cifar10N2"};
+static constexpr MatmulTaskShape kCifar10N4TaskShape     {4,     512, 10, "Cifar10N4"};
+static constexpr MatmulTaskShape kCifar10N8TaskShape     {8,     512, 10, "Cifar10N8"};
+static constexpr MatmulTaskShape kCifar10N16TaskShape    {16,    512, 10, "Cifar10N16"};
+static constexpr MatmulTaskShape kCifar10N32TaskShape    {32,    512, 10, "Cifar10N32"};
+static constexpr MatmulTaskShape kCifar10N64TaskShape    {64,    512, 10, "Cifar10N64"};
+static constexpr MatmulTaskShape kCifar10N128TaskShape   {128,   512, 10, "Cifar10N128"};
+static constexpr MatmulTaskShape kCifar10N256TaskShape   {256,   512, 10, "Cifar10N256"};
+static constexpr MatmulTaskShape kCifar10N512TaskShape   {512,   512, 10, "Cifar10N512"};
+static constexpr MatmulTaskShape kCifar10N1024TaskShape  {1024,  512, 10, "Cifar10N1024"};
+static constexpr MatmulTaskShape kCifar10N2048TaskShape  {2048,  512, 10, "Cifar10N2048"};
+static constexpr MatmulTaskShape kCifar10N4096TaskShape  {4096,  512, 10, "Cifar10N4096"};
+static constexpr MatmulTaskShape kCifar10N8192TaskShape  {8192,  512, 10, "Cifar10N8192"};
+static constexpr MatmulTaskShape kCifar100TaskShape       {10000, 512, 100, "Cifar100"};
+static constexpr MatmulTaskShape kCifar100N1TaskShape     {1,     512, 100, "Cifar100N1"};
+static constexpr MatmulTaskShape kCifar100N2TaskShape     {2,     512, 100, "Cifar100N2"};
+static constexpr MatmulTaskShape kCifar100N4TaskShape     {4,     512, 100, "Cifar100N4"};
+static constexpr MatmulTaskShape kCifar100N8TaskShape     {8,     512, 100, "Cifar100N8"};
+static constexpr MatmulTaskShape kCifar100N16TaskShape    {16,    512, 100, "Cifar100N16"};
+static constexpr MatmulTaskShape kCifar100N32TaskShape    {32,    512, 100, "Cifar100N32"};
+static constexpr MatmulTaskShape kCifar100N64TaskShape    {64,    512, 100, "Cifar100N64"};
+static constexpr MatmulTaskShape kCifar100N128TaskShape   {128,   512, 100, "Cifar100N128"};
+static constexpr MatmulTaskShape kCifar100N256TaskShape   {256,   512, 100, "Cifar100N256"};
+static constexpr MatmulTaskShape kCifar100N512TaskShape   {512,   512, 100, "Cifar100N512"};
+static constexpr MatmulTaskShape kCifar100N1024TaskShape  {1024,  512, 100, "Cifar100N1024"};
+static constexpr MatmulTaskShape kCifar100N2048TaskShape  {2048,  512, 100, "Cifar100N2048"};
+static constexpr MatmulTaskShape kCifar100N4096TaskShape  {4096,  512, 100, "Cifar100N4096"};
+static constexpr MatmulTaskShape kCifar100N8192TaskShape  {8192,  512, 100, "Cifar100N8192"};
 // static constexpr MatmulTaskShape kUcrTaskShape {1000, 320, 128, "UCR"};
 static constexpr MatmulTaskShape kUcrTaskShape0 {1000, 320, 64, "Ucr64"};
 static constexpr MatmulTaskShape kUcrTaskShape1 {1000, 320, 128, "Ucr128"};
@@ -176,6 +202,7 @@ void _profile_mithral(const char* dset_name, uint32_t N, uint32_t D, uint32_t M,
         REPEATED_PROFILE_DIST_COMPUTATION(kNreps, msg, kNtrials,
             task.output().data(), task.output().size(),
             task.scan());
+        printf("###scaned\n");
     } else { // sparse centroids
         msg = string_with_format(fmt, "amm mithral sparselut");
         REPEATED_PROFILE_DIST_COMPUTATION(kNreps, msg, kNtrials,
@@ -228,8 +255,10 @@ void _profile_mithral(const MatmulTaskShape& shape, std::vector<int> ncodebooks,
     for (auto c : ncodebooks) {
         printf("---- ncodebooks=%d\n", c);
         for (auto lutconst : lut_work_consts) {
+            printf("###before: lut_work_const = %f\n", lutconst);
             _profile_mithral<InputT>(
                 shape.name, shape.N, shape.D, shape.M, c, lutconst);
+            printf("###after: lut_work_const = %f\n", lutconst);
         }
     }
 }
@@ -415,10 +444,10 @@ void _profile_matmul_methods(std::vector<int> dvals, MatmulTaskShape shape) {
     auto D = shape.D;
     auto M = shape.M;
     printf("------------------------ %s\n", shape.name);
-    for (auto d : dvals) {
-        _profile_sketch_matmul(shape.name, N, D, M, d);
-        _profile_sketch_matmul_fixedW(shape.name, N, D, M, d);
-    }
+//    for (auto d : dvals) {
+//        _profile_sketch_matmul(shape.name, N, D, M, d);
+//        _profile_sketch_matmul_fixedW(shape.name, N, D, M, d);
+//    }
     _profile_matmul(shape.name, N, D, M);
 }
 
